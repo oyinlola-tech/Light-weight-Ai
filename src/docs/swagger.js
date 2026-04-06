@@ -1,4 +1,8 @@
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJsdocImport = require("swagger-jsdoc");
+const swaggerJsdoc =
+  typeof swaggerJsdocImport === "function"
+    ? swaggerJsdocImport
+    : swaggerJsdocImport.default;
 const config = require("../config");
 
 const options = {

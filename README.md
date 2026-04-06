@@ -1,9 +1,11 @@
-# Simple AI Integration Backend
+# AI Integration (Testing Project)
+Author: Oluwayemi Oyinlola  
+Portfolio: oyinlola.site
 
-A lightweight Express backend that exposes REST endpoints for chatting, summarizing, and generating content using an open-source model (via Ollama). Built for clean architecture, security, and easy local setup.
+A full-stack testing project (frontend + backend) that exposes REST endpoints for chatting, summarizing, and generating content using an open-source model (via Ollama). Built for clean architecture, security, and easy local setup.
 
 ## Features
-- Full-stack app (frontend + backend)
+- Full-stack app with a premium UI
 - REST API with Express
 - API key authentication
 - Rate limiting, CORS, Helmet
