@@ -260,15 +260,65 @@ if (elements.copyGenerate) {
 }
 
 if (elements.loadModels) {
-  elements.loadModels.addEventListener("click", async () => {
+function formatModels(data) {
+  if (!data || !Array.isArray(data.data)) {
+    return null;
+  }
+
+  const container = document.createElement("div");
+  container.className = "model-grid";
+
+  data.data
+    .filter((model) => model && model.id)
+    .forEach((model) => {
+      const card = document.createElement("div");
+      card.className = "model-card";
+
+      const title = document.createElement("h3");
+      title.textContent = model.id;
+
+      const owner = document.createElement("p");
+      owner.textContent = `Owner: ${model.owned_by || "n/a"}`;
+
+      const context = document.createElement("p");
+      context.textContent = `Context Window: ${
+        model.context_window ? model.context_window : "n/a"
+      }`;
+
+      const maxTokens = document.createElement("p");
+      maxTokens.textContent = `Max Completion Tokens: ${
+        model.max_completion_tokens ? model.max_completion_tokens : "n/a"
+      }`;
+
+      const active = document.createElement("p");
+      active.textContent = `Active: ${model.active ? "Yes" : "No"}`;
+
+      card.appendChild(title);
+      card.appendChild(owner);
+      card.appendChild(context);
+      card.appendChild(maxTokens);
+      card.appendChild(active);
+      container.appendChild(card);
+    });
+
+  return container;
+}
+
+elements.loadModels.addEventListener("click", async () => {
   elements.modelsOutput.textContent = "Loading models...";
   try {
     const result = await apiRequest("/api/ai/models");
-    elements.modelsOutput.textContent = JSON.stringify(result, null, 2);
+    const formatted = formatModels(result);
+    elements.modelsOutput.innerHTML = "";
+    if (formatted) {
+      elements.modelsOutput.appendChild(formatted);
+    } else {
+      elements.modelsOutput.textContent = "No models available.";
+    }
   } catch (error) {
     elements.modelsOutput.textContent = `Error: ${error.message}`;
   }
-  });
+});
 }
 
 restoreSettings();

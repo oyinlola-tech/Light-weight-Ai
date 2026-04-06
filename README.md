@@ -33,7 +33,7 @@ npm run dev
 ```
 
 Server runs at `http://localhost:3000` by default.
-Open the UI at `http://localhost:3000/index.html`.
+Open the UI at `http://localhost:3000/`.
 
 ## API Authentication
 Send your API key with either header:

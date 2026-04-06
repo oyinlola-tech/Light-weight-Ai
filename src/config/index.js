@@ -18,6 +18,8 @@ const config = {
   groqBaseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com",
   groqApiKey: process.env.GROQ_API_KEY || "",
   groqModel: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
+  humanizeResponses:
+    String(process.env.HUMANIZE_RESPONSES || "true").toLowerCase() === "true",
   requestTimeoutMs: Number(process.env.REQUEST_TIMEOUT_MS || 60000)
 };
 

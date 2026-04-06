@@ -36,8 +36,19 @@ app.use(rateLimiter);
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "public", "index.html"));
+const pageRoutes = {
+  "/": "index.html",
+  "/chat": "chat.html",
+  "/summarize": "summarize.html",
+  "/generate": "generate.html",
+  "/models": "models.html",
+  "/settings": "settings.html"
+};
+
+Object.entries(pageRoutes).forEach(([route, file]) => {
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", file));
+  });
 });
 
 app.use("/api/health", healthRoutes);

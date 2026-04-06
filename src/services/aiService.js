@@ -4,7 +4,8 @@ const { chatCompletion: groqChatCompletion, listModels: listGroqModels } =
   require("./groqClient");
 
 const DEFAULT_SYSTEM_PROMPT =
-  "You are a concise, helpful assistant. Follow instructions carefully and be safe.";
+  "You are a helpful, professional assistant. Write in a natural, human tone. " +
+  "Be clear and concise. Avoid robotic phrasing and avoid mentioning that you are an AI.";
 
 function buildMessages({ message, history = [], systemPrompt = DEFAULT_SYSTEM_PROMPT }) {
   const messages = [];
@@ -23,7 +24,14 @@ function buildMessages({ message, history = [], systemPrompt = DEFAULT_SYSTEM_PR
 }
 
 async function chatCompletion({ message, history, systemPrompt, options }) {
-  const messages = buildMessages({ message, history, systemPrompt });
+  const resolvedSystemPrompt = config.humanizeResponses
+    ? systemPrompt || DEFAULT_SYSTEM_PROMPT
+    : systemPrompt;
+  const messages = buildMessages({
+    message,
+    history,
+    systemPrompt: resolvedSystemPrompt
+  });
   if (config.aiProvider === "groq") {
     const response = await chatCompletionGroq(messages, options);
     return response;
@@ -39,7 +47,8 @@ async function chatCompletion({ message, history, systemPrompt, options }) {
 
 async function summarizeText({ text, options }) {
   const systemPrompt =
-    "You are a summarization assistant. Provide a clear, short summary in 3-5 sentences.";
+    "You are a summarization assistant. Provide a clear, short summary in 3-5 sentences. " +
+    "Use a natural, human tone and avoid robotic phrasing.";
   if (config.aiProvider === "groq") {
     const response = await chatCompletionGroq(
       [
@@ -73,8 +82,16 @@ async function summarizeText({ text, options }) {
 
 async function generateText({ prompt, options }) {
   if (config.aiProvider === "groq") {
+    const systemPrompt = config.humanizeResponses
+      ? "Write in a natural, human tone. Be clear and helpful. Avoid robotic phrasing."
+      : undefined;
     const response = await chatCompletionGroq(
-      [{ role: "user", content: prompt }],
+      systemPrompt
+        ? [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: prompt }
+          ]
+        : [{ role: "user", content: prompt }],
       options
     );
     return {
