@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Oluwayemi Oyinlola" />
+    <meta
+      name="description"
+      content="AI Integration chat workspace by Oluwayemi Oyinlola."
+    />
+    <title>AI Integration · Chat</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div>
+            <p class="eyebrow">AI Integration · Testing Project</p>
+            <h1>Chat Studio</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <a class="link" href="/api/docs" target="_blank" rel="noopener">Swagger</a>
+        </div>
+      </header>
+
+      <nav class="nav">
+        <a class="nav-link" href="/index.html">Overview</a>
+        <a class="nav-link active" href="/chat.html">Chat</a>
+        <a class="nav-link" href="/summarize.html">Summarize</a>
+        <a class="nav-link" href="/generate.html">Generate</a>
+        <a class="nav-link" href="/models.html">Models</a>
+        <a class="nav-link" href="/settings.html">Settings</a>
+      </nav>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Conversation</h2>
+            <p>Multi-turn assistant with memory and system instructions.</p>
+          </div>
+          <div class="pill" id="chatStatus">Ready</div>
+        </div>
+        <div class="grid-3">
+          <label>
+            Session ID
+            <input id="chatSessionId" placeholder="Auto-generated" />
+          </label>
+          <label>
+            System Prompt
+            <input id="systemPrompt" placeholder="You are a helpful assistant" />
+          </label>
+          <label>
+            Temperature
+            <input id="temperature" type="number" min="0" max="1" step="0.1" value="0.7" />
+          </label>
+        </div>
+        <label>
+          Message
+          <textarea id="chatMessage" rows="4" placeholder="Ask anything..."></textarea>
+        </label>
+        <div class="row">
+          <button id="sendChat">Send Message</button>
+          <button class="ghost" id="clearChat">Clear</button>
+          <button class="ghost" id="copyChat">Copy Response</button>
+        </div>
+        <div class="output" id="chatOutput"></div>
+        <div class="timeline" id="chatTimeline"></div>
+      </section>
+
+      <footer class="footer">
+        <span>Express backend (Groq or Ollama)</span>
+        <span>API key secured</span>
+        <span>
+          Author: Oluwayemi Oyinlola •
+          <a class="link" href="https://oyinlola.site" target="_blank" rel="noopener">
+            oyinlola.site
+          </a>
+        </span>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

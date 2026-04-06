@@ -72,6 +72,29 @@ h2 {
   align-items: center;
 }
 
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.nav-link.active {
+  color: var(--ink);
+  background: #f1efe8;
+  border-color: var(--border);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;

@@ -9,9 +9,10 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Simple AI Integration API",
+      title: "AI Integration API",
       version: "1.0.0",
-      description: "REST API for interacting with a lightweight open-source AI model."
+      description:
+        "REST API for interacting with Groq or a lightweight open-source model."
     },
     servers: [
       {

@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Oluwayemi Oyinlola" />
-    <meta name="description" content="AI Integration by Oluwayemi Oyinlola. Secure, production-ready AI endpoints with a premium UI." />
-    <title>AI Integration</title>
+    <meta name="description" content="AI Integration by Oluwayemi Oyinlola. Secure, production-ready AI endpoints with a UI." />
+    <title>AI Integration · Overview</title>
     <link rel="stylesheet" href="/styles.css" />
     <link
       rel="stylesheet"
@@ -26,6 +26,15 @@
           <a class="link" href="/api/docs" target="_blank" rel="noopener">Swagger</a>
         </div>
       </header>
+
+      <nav class="nav">
+        <a class="nav-link active" href="/index.html">Overview</a>
+        <a class="nav-link" href="/chat.html">Chat</a>
+        <a class="nav-link" href="/summarize.html">Summarize</a>
+        <a class="nav-link" href="/generate.html">Generate</a>
+        <a class="nav-link" href="/models.html">Models</a>
+        <a class="nav-link" href="/settings.html">Settings</a>
+      </nav>
 
       <section class="hero">
         <div class="hero-copy">
@@ -67,93 +76,39 @@
         </div>
       </section>
 
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Chat Studio</h2>
-            <p>Multi-turn assistant with memory and system instructions.</p>
-          </div>
-          <div class="pill" id="chatStatus">Ready</div>
-        </div>
-        <div class="grid-3">
-          <label>
-            Session ID
-            <input id="chatSessionId" placeholder="Auto-generated" />
-          </label>
-          <label>
-            System Prompt
-            <input id="systemPrompt" placeholder="You are a helpful assistant" />
-          </label>
-          <label>
-            Temperature
-            <input id="temperature" type="number" min="0" max="1" step="0.1" value="0.7" />
-          </label>
-        </div>
-        <label>
-          Message
-          <textarea id="chatMessage" rows="4" placeholder="Ask anything..."></textarea>
-        </label>
-        <div class="row">
-          <button id="sendChat">Send Message</button>
-          <button class="ghost" id="clearChat">Clear</button>
-          <button class="ghost" id="copyChat">Copy Response</button>
-        </div>
-        <div class="output" id="chatOutput"></div>
-        <div class="timeline" id="chatTimeline"></div>
-      </section>
-
       <section class="panel grid-2">
         <div class="card">
-          <div class="panel-head">
-            <div>
-              <h2>Summarize</h2>
-              <p>Condense long text into clear summaries.</p>
-            </div>
-            <button class="ghost" id="copySummary">Copy</button>
-          </div>
-          <label>
-            Text to summarize
-            <textarea id="summarizeText" rows="7" placeholder="Paste text here..."></textarea>
-          </label>
+          <h2>Chat Studio</h2>
+          <p>Multi-turn assistant with memory and system instructions.</p>
           <div class="row">
-            <button id="sendSummarize">Summarize</button>
+            <a class="link" href="/chat.html">Open Chat</a>
           </div>
-          <div class="output" id="summarizeOutput"></div>
         </div>
         <div class="card">
-          <div class="panel-head">
-            <div>
-              <h2>Generate</h2>
-              <p>Generate content with custom prompts.</p>
-            </div>
-            <button class="ghost" id="copyGenerate">Copy</button>
-          </div>
-          <label>
-            Prompt
-            <textarea id="generatePrompt" rows="7" placeholder="Write a product description..."></textarea>
-          </label>
+          <h2>Summarize</h2>
+          <p>Condense long text into clear summaries.</p>
           <div class="row">
-            <button id="sendGenerate">Generate</button>
-          </div>
-          <div class="output" id="generateOutput"></div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Model Inventory</h2>
-            <p>See the models available from your Ollama server.</p>
-          </div>
-          <div class="row">
-            <button id="loadModels">Load Models</button>
+            <a class="link" href="/summarize.html">Open Summarize</a>
           </div>
         </div>
-        <div class="output" id="modelsOutput"></div>
+        <div class="card">
+          <h2>Generate</h2>
+          <p>Generate content with custom prompts.</p>
+          <div class="row">
+            <a class="link" href="/generate.html">Open Generate</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Models</h2>
+          <p>See available models from your Ollama server.</p>
+          <div class="row">
+            <a class="link" href="/models.html">Open Models</a>
+          </div>
+        </div>
       </section>
 
       <footer class="footer">
-        <span>Express + Ollama backend</span>
+        <span>Express backend (Groq or Ollama)</span>
         <span>API key secured</span>
         <span>Swagger docs included</span>
         <span>

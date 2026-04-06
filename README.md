@@ -15,7 +15,7 @@ A full-stack testing project (frontend + backend) that exposes REST endpoints fo
 
 ## Requirements
 - Node.js 18+
-- Ollama installed and running locally (or a compatible Ollama endpoint)
+- Groq API key (or Ollama running locally if you switch providers)
 
 ## Quick Start
 1. Install dependencies
@@ -26,18 +26,14 @@ npm install
 ```
 cp .env.example .env
 ```
-3. Start Ollama (example)
-```
-ollama serve
-ollama pull llama3.2:1b
-```
+3. Set your Groq API key in `.env`
 4. Run the server
 ```
 npm run dev
 ```
 
 Server runs at `http://localhost:3000` by default.
-Open the UI at `http://localhost:3000`.
+Open the UI at `http://localhost:3000/index.html`.
 
 ## API Authentication
 Send your API key with either header:
@@ -75,6 +71,12 @@ Visit http://localhost:3000/api/docs for interactive API docs and testing.
 
 ## Database (Optional)
 Set ENABLE_DB=true in .env to auto-create a SQLite database and store chat history at DB_PATH.
+
+## AI Provider
+This project supports Groq (default) and Ollama. In `.env`:
+- `AI_PROVIDER=groq` to use Groq
+- `AI_PROVIDER=ollama` to use Ollama
+If using Ollama, make sure Ollama is running and the model is pulled.
 
 ## Deployment Notes
 - Use environment variables for all secrets.

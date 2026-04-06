@@ -15,13 +15,30 @@ const swaggerSpec = require("./docs/swagger");
 
 const app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+        imgSrc: ["'self'", "data:"],
+        scriptSrc: ["'self'"],
+        connectSrc: ["'self'"]
+      }
+    }
+  })
+);
 app.use(cors({ origin: config.corsOrigin }));
 app.use(express.json({ limit: "1mb" }));
 app.use(morgan("dev"));
 app.use(rateLimiter);
 
 app.use(express.static(path.join(process.cwd(), "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "public", "index.html"));
+});
 
 app.use("/api/health", healthRoutes);
 app.use("/api", metaRoutes);

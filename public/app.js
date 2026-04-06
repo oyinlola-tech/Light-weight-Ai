@@ -103,9 +103,13 @@ async function loadHealth() {
 async function loadMeta() {
   try {
     const meta = await apiRequest("/api");
-    elements.apiMeta.textContent = `${meta.name} v${meta.version}`;
+    if (elements.apiMeta) {
+      elements.apiMeta.textContent = `${meta.name} v${meta.version}`;
+    }
   } catch (error) {
-    elements.apiMeta.textContent = "Metadata unavailable";
+    if (elements.apiMeta) {
+      elements.apiMeta.textContent = "Metadata unavailable";
+    }
   }
 }
 

@@ -12,8 +12,12 @@ const config = {
   rateLimitMax: Number(process.env.RATE_LIMIT_MAX || 100),
   enableDb: String(process.env.ENABLE_DB || "false").toLowerCase() === "true",
   dbPath: process.env.DB_PATH || path.join(process.cwd(), "data", "app.db"),
+  aiProvider: (process.env.AI_PROVIDER || "ollama").toLowerCase(),
   ollamaBaseUrl: process.env.OLLAMA_BASE_URL || "http://localhost:11434",
   ollamaModel: process.env.OLLAMA_MODEL || "llama3.2:1b",
+  groqBaseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com/openai/v1",
+  groqApiKey: process.env.GROQ_API_KEY || "",
+  groqModel: process.env.GROQ_MODEL || "llama3-8b-8192",
   requestTimeoutMs: Number(process.env.REQUEST_TIMEOUT_MS || 60000)
 };
 

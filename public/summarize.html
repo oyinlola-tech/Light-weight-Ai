@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Oluwayemi Oyinlola" />
+    <meta
+      name="description"
+      content="AI Integration summarize workspace by Oluwayemi Oyinlola."
+    />
+    <title>AI Integration · Summarize</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div>
+            <p class="eyebrow">AI Integration · Testing Project</p>
+            <h1>Summarize</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <a class="link" href="/api/docs" target="_blank" rel="noopener">Swagger</a>
+        </div>
+      </header>
+
+      <nav class="nav">
+        <a class="nav-link" href="/index.html">Overview</a>
+        <a class="nav-link" href="/chat.html">Chat</a>
+        <a class="nav-link active" href="/summarize.html">Summarize</a>
+        <a class="nav-link" href="/generate.html">Generate</a>
+        <a class="nav-link" href="/models.html">Models</a>
+        <a class="nav-link" href="/settings.html">Settings</a>
+      </nav>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Summarize Text</h2>
+            <p>Condense long text into clear summaries.</p>
+          </div>
+          <button class="ghost" id="copySummary">Copy</button>
+        </div>
+        <label>
+          Text to summarize
+          <textarea id="summarizeText" rows="10" placeholder="Paste text here..."></textarea>
+        </label>
+        <div class="row">
+          <button id="sendSummarize">Summarize</button>
+        </div>
+        <div class="output" id="summarizeOutput"></div>
+      </section>
+
+      <footer class="footer">
+        <span>Express backend (Groq or Ollama)</span>
+        <span>API key secured</span>
+        <span>
+          Author: Oluwayemi Oyinlola •
+          <a class="link" href="https://oyinlola.site" target="_blank" rel="noopener">
+            oyinlola.site
+          </a>
+        </span>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
