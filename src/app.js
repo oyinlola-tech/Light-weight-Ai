@@ -44,6 +44,7 @@ app.use("/api/health", healthRoutes);
 app.use("/api", metaRoutes);
 app.use("/api/ai", aiRoutes);
 
+app.use("/api/docs", helmet({ contentSecurityPolicy: false }));
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(errorHandler);
