@@ -25,10 +25,21 @@ function savePair({ sessionId, userContent, assistantContent, type }) {
 
 async function chatHandler(req, res, next) {
   try {
-    const { message, history = [], sessionId, options } = req.validated.body;
+    const {
+      message,
+      history = [],
+      sessionId,
+      systemPrompt,
+      options
+    } = req.validated.body;
     const resolvedSessionId = sessionId || crypto.randomUUID();
 
-    const result = await chatCompletion({ message, history, options });
+    const result = await chatCompletion({
+      message,
+      history,
+      systemPrompt,
+      options
+    });
     savePair({
       sessionId: resolvedSessionId,
       userContent: message,

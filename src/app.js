@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -19,6 +20,8 @@ app.use(cors({ origin: config.corsOrigin }));
 app.use(express.json({ limit: "1mb" }));
 app.use(morgan("dev"));
 app.use(rateLimiter);
+
+app.use(express.static(path.join(process.cwd(), "public")));
 
 app.use("/api/health", healthRoutes);
 app.use("/api", metaRoutes);

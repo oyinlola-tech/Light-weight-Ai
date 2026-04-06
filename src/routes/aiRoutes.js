@@ -25,6 +25,7 @@ const chatSchema = z.object({
         })
       )
       .optional(),
+    systemPrompt: z.string().optional(),
     sessionId: z.string().optional(),
     options: z.record(z.any()).optional()
   })
@@ -86,6 +87,8 @@ const sessionHistorySchema = z.object({
  *                       type: string
  *                     content:
  *                       type: string
+ *               systemPrompt:
+ *                 type: string
  *               sessionId:
  *                 type: string
  *     responses:

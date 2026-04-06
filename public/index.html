@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple AI Integration</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Simple AI Integration</p>
+          <h1>Build with a lightweight AI backend</h1>
+          <p class="sub">
+            Chat, summarize, and generate content through a secure REST API.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>Quick Status</h2>
+          <div class="status" id="healthStatus">Checking API health...</div>
+          <div class="meta" id="apiMeta"></div>
+          <div class="row">
+            <button id="refreshMeta">Refresh</button>
+            <a class="link" href="/api/docs" target="_blank" rel="noopener">Open Swagger</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>API Access</h2>
+          <p>Set your API key and base URL for all requests.</p>
+        </div>
+        <div class="grid-2">
+          <label>
+            API Base URL
+            <input id="baseUrl" value="http://localhost:3000" />
+          </label>
+          <label>
+            API Key
+            <input id="apiKey" placeholder="change-me" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Chat</h2>
+          <p>Have a conversation with memory across turns.</p>
+        </div>
+        <div class="grid-2">
+          <label>
+            Session ID (optional)
+            <input id="chatSessionId" placeholder="Leave empty for new session" />
+          </label>
+          <label>
+            System Prompt (optional)
+            <input id="systemPrompt" placeholder="You are a helpful assistant" />
+          </label>
+        </div>
+        <label>
+          Message
+          <textarea id="chatMessage" rows="4" placeholder="Ask anything..."></textarea>
+        </label>
+        <div class="row">
+          <button id="sendChat">Send</button>
+          <button class="ghost" id="clearChat">Clear</button>
+        </div>
+        <div class="output" id="chatOutput"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Summarize</h2>
+          <p>Turn long text into a short, clean summary.</p>
+        </div>
+        <label>
+          Text to summarize
+          <textarea id="summarizeText" rows="5" placeholder="Paste text here..."></textarea>
+        </label>
+        <div class="row">
+          <button id="sendSummarize">Summarize</button>
+        </div>
+        <div class="output" id="summarizeOutput"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Generate</h2>
+          <p>Generate content from a prompt.</p>
+        </div>
+        <label>
+          Prompt
+          <textarea id="generatePrompt" rows="4" placeholder="Write a product description..."></textarea>
+        </label>
+        <div class="row">
+          <button id="sendGenerate">Generate</button>
+        </div>
+        <div class="output" id="generateOutput"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Models</h2>
+          <p>View models available from the Ollama server.</p>
+        </div>
+        <div class="row">
+          <button id="loadModels">Load Models</button>
+        </div>
+        <div class="output" id="modelsOutput"></div>
+      </section>
+
+      <footer class="footer">
+        <span>Built with Express + Ollama</span>
+        <span>Secure API Key access</span>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
