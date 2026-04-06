@@ -10,25 +10,44 @@ function getClient() {
     throw error;
   }
 
+  const baseURL = (config.groqBaseUrl || "https://api.groq.com").replace(
+    /\/openai\/v1\/?$/i,
+    ""
+  );
+
   return new Groq({
     apiKey: config.groqApiKey,
-    baseURL: config.groqBaseUrl,
+    baseURL,
     timeout: config.requestTimeoutMs
   });
 }
 
 async function chatCompletion(messages, options = {}) {
   const client = getClient();
-  return client.chat.completions.create({
-    model: config.groqModel,
-    messages,
-    ...options
-  });
+  try {
+    return await client.chat.completions.create({
+      model: config.groqModel,
+      messages,
+      ...options
+    });
+  } catch (error) {
+    const err = new Error(error?.message || "Groq request failed.");
+    err.status = error?.status || 502;
+    err.code = "GROQ_ERROR";
+    throw err;
+  }
 }
 
 async function listModels() {
   const client = getClient();
-  return client.models.list();
+  try {
+    return await client.models.list();
+  } catch (error) {
+    const err = new Error(error?.message || "Groq request failed.");
+    err.status = error?.status || 502;
+    err.code = "GROQ_ERROR";
+    throw err;
+  }
 }
 
 module.exports = {

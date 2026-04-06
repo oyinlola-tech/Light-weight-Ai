@@ -1,4 +1,5 @@
 module.exports = function errorHandler(err, req, res, next) {
+  console.error(err);
   const status = err.status || 500;
   const payload = {
     error: err.code || "INTERNAL_SERVER_ERROR",

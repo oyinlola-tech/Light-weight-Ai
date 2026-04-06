@@ -15,9 +15,9 @@ const config = {
   aiProvider: (process.env.AI_PROVIDER || "ollama").toLowerCase(),
   ollamaBaseUrl: process.env.OLLAMA_BASE_URL || "http://localhost:11434",
   ollamaModel: process.env.OLLAMA_MODEL || "llama3.2:1b",
-  groqBaseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com/openai/v1",
+  groqBaseUrl: process.env.GROQ_BASE_URL || "https://api.groq.com",
   groqApiKey: process.env.GROQ_API_KEY || "",
-  groqModel: process.env.GROQ_MODEL || "llama3-8b-8192",
+  groqModel: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
   requestTimeoutMs: Number(process.env.REQUEST_TIMEOUT_MS || 60000)
 };
 

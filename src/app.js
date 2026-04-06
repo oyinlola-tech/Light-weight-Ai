@@ -11,7 +11,7 @@ const errorHandler = require("./middleware/errorHandler");
 const aiRoutes = require("./routes/aiRoutes");
 const healthRoutes = require("./routes/healthRoutes");
 const metaRoutes = require("./routes/metaRoutes");
-const swaggerSpec = require("./docs/swagger");
+const { getSwaggerSpec } = require("./docs/swagger");
 
 const app = express();
 
@@ -44,8 +44,25 @@ app.use("/api/health", healthRoutes);
 app.use("/api", metaRoutes);
 app.use("/api/ai", aiRoutes);
 
+app.get("/api/docs.json", async (req, res, next) => {
+  try {
+    const spec = await getSwaggerSpec();
+    res.json(spec);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use("/api/docs", helmet({ contentSecurityPolicy: false }));
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(
+  "/api/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(null, {
+    swaggerOptions: {
+      url: "/api/docs.json"
+    }
+  })
+);
 
 app.use(errorHandler);
 

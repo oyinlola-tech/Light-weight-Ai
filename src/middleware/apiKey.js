@@ -13,10 +13,7 @@ function extractApiKey(req) {
 
 module.exports = function apiKey(req, res, next) {
   if (!config.apiKey) {
-    return res.status(500).json({
-      error: "SERVER_MISCONFIGURED",
-      message: "API_KEY is not configured on the server."
-    });
+    return next();
   }
 
   const key = extractApiKey(req);

@@ -96,6 +96,13 @@ async function getModels() {
   if (config.aiProvider === "groq") {
     return listGroqModels();
   }
+  if (config.aiProvider !== "ollama") {
+    const error = new Error(
+      `Unsupported AI_PROVIDER: ${config.aiProvider}. Use groq or ollama.`
+    );
+    error.status = 500;
+    throw error;
+  }
   return listModels();
 }
 

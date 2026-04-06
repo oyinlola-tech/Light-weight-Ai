@@ -32,4 +32,8 @@ const options = {
   apis: ["./src/routes/*.js"]
 };
 
-module.exports = swaggerJsdoc(options);
+async function getSwaggerSpec() {
+  return Promise.resolve(swaggerJsdoc(options));
+}
+
+module.exports = { getSwaggerSpec };
